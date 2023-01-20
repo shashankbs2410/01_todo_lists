@@ -1,0 +1,51 @@
+.google_login {
+  height: 50%;
+  width: 50%;
+  background-color: #f7901d;
+  padding: 50px;
+  padding-bottom: 80px;
+  margin: 50px auto;
+  text-align: center;
+  border-radius: 10px;
+  font-family: "Poppins", "Calibri", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header_user {
+  width: 100%;
+  background-color: #f7901d;
+  font-family: "Poppins", "Calibri", Arial, Helvetica, sans-serif;
+  text-align: center;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  height: 5rem;
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  font-size: 18px;
+  margin: auto 0px;
+  position: absolute;
+  top: 20px;
+  left: 300px;
+}
+
+.email {
+  font-size: 14px;
+  margin: auto 0px;
+  display: block;
+  position: absolute;
+  top: 45px;
+  left: 300px;
+}
+
+.logout_button {
+  margin: auto 0px;
+  position: absolute;
+  top: 20px;
+  right: 300px;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,700,900");

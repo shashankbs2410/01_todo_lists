@@ -1,0 +1,63 @@
+.form {
+  width: 60%;
+  text-align: center;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 25px auto 25px auto;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form button {
+  margin: 1rem auto;
+  display: block;
+  text-align: center;
+  background-color: #f7901d;
+  border: black;
+  padding: 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: "Poppins", "Calibri", Arial, Helvetica, sans-serif;
+  box-shadow: 3px;
+  cursor: pointer;
+  box-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.form button:hover {
+  opacity: 0.9;
+}
+
+.form button:active {
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.form label {
+  display: block;
+  padding: 5px;
+  font-weight: bold;
+  font-family: "Poppins", "Calibri", Arial, Helvetica, sans-serif;
+  font-size: 22px;
+}
+
+.form input {
+  width: 50%;
+  height: 2rem;
+  border-radius: 6px;
+  border-width: 1px;
+  padding: 5px 5px;
+  font-size: 16px;
+  font-family: "Poppins", "Calibri", Arial, Helvetica, sans-serif;
+}
+
+.input_error {
+  border-color: red;
+  background-color: lightsalmon;
+}
+
+.form_error {
+  font-family: "Poppins", "Calibri", Arial, Helvetica, sans-serif;
+  color: red;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,700,900");

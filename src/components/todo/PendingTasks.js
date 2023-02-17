@@ -34,6 +34,7 @@ const PendingTasks = (props) => {
           <h3>Pending Tasks</h3>
           {items.map((task) => (
             <Task
+              key={task.id}
               task={task}
               markCompleteHandler={markCompleteHandler}
               deleteHandler={deleteHandler}

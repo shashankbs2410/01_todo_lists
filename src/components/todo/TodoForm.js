@@ -34,6 +34,7 @@ const TodoForm = () => {
 
   return (
     <div className={classes.background}>
+      <header />
       <form className={classes.form} onSubmit={formSubmitHandler}>
         <label htmlFor="Task">Add New Task</label>
         <input

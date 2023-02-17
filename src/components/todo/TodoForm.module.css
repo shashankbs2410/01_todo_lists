@@ -4,7 +4,7 @@
   background-color: white;
   padding: 10px;
   border-radius: 5px;
-  margin: 75px auto 25px auto;
+  margin: 10px auto 10px auto;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -58,6 +58,12 @@
 .form_error {
   font-family: "Poppins", "Calibri", Arial, Helvetica, sans-serif;
   color: red;
+}
+
+header {
+  width: 100%;
+  background-color: black;
+  height: 75px;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,700,900");

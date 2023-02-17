@@ -21,8 +21,7 @@
 
 .logout_button {
   position: absolute;
-  left: 50%;
-  transform: translate(-50%);
+  right: 100px;
   top: 20px;
   height: 40px;
   width: 150px;

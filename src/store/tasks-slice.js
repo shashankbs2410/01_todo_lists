@@ -23,6 +23,12 @@ const taskSlice = createSlice({
     markIncompleteTask(state, action) {
       state.pendingTasks.unshift(action.payload);
     },
+    editTask(state, action) {
+      const id = action.payload.id;
+      const input = action.payload.input;
+      const existingItem = state.pendingTasks.find((task) => task.id === id);
+      existingItem.text = input;
+    },
   },
 });
 

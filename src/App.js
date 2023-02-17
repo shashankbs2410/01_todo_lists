@@ -1,78 +1,49 @@
-import { useState } from "react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import TodoForm from "./components/todo/TodoForm";
 import PendingTasks from "./components/todo/PendingTasks";
 import CompletedTasks from "./components/todo/CompletedTasks";
 import GoogleLoginComponent from "./components/login/GoogleLoginComponent";
+import { taskActions } from "./store/tasks-slice";
 
-function App(props) {
-  const [tasks, setTasks] = useState([]);
-  const [signedIn, setSignedIn] = useState(false);
-  const [completedTasks, setCompletedTasks] = useState([]);
-
-  const signInChangeHandler = () => {
-    setSignedIn(!signedIn);
-  };
-
-  const markCompleteHandler = (task) => {
-    setCompletedTasks((prevCompletedTasks) => {
-      const updatedCompletedTasks = [...prevCompletedTasks];
-      updatedCompletedTasks.push(task);
-      return updatedCompletedTasks;
-    });
-  };
+function App() {
+  const signedIn = useSelector((state) => state.ui.signedIn);
+  const dispatch = useDispatch();
 
   const deletePendingHandler = (task) => {
-    setTasks((prevTasks) => {
-      const updatedTasks = prevTasks.filter((tasks) => tasks.id !== task.id);
-      return updatedTasks;
-    });
-  };
-
-  const markIncompleteHandler = (task) => {
-    setTasks((prevTasks) => {
-      const updatedTasks = [...prevTasks];
-      updatedTasks.unshift(task);
-      return updatedTasks;
-    });
+    const id = task.id;
+    dispatch(taskActions.deletePendingTask(id));
   };
 
   const deleteCompletedHandler = (task) => {
-    setCompletedTasks((prevCompletedTasks) => {
-      const updatedCompletedTasks = prevCompletedTasks.filter(
-        (tasks) => tasks.id !== task.id
-      );
-      return updatedCompletedTasks;
-    });
+    const id = task.id;
+    dispatch(taskActions.deleteCompletedTask(id));
   };
 
-  const addTaskHandler = (enteredInput) => {
-    setTasks((prevTasks) => {
-      const updatedTasks = [...prevTasks];
-      updatedTasks.push({
-        text: enteredInput,
-        id: Math.random().toString(),
-      });
-      return updatedTasks;
-    });
+  const markCompleteHandler = (task) => {
+    dispatch(taskActions.markCompleteTask(task));
+  };
+
+  const markIncompleteHandler = (task) => {
+    dispatch(taskActions.markIncompleteTask(task));
   };
 
   return (
     <div>
-      <GoogleLoginComponent onsignInChange={signInChangeHandler} />
-      {signedIn && <TodoForm onAddTask={addTaskHandler} />}
+      <GoogleOAuthProvider clientId="510666409059-2v0h3v9rqgn12fcfnnd7tjj0s1tbie3k.apps.googleusercontent.com">
+        <GoogleLoginComponent />
+      </GoogleOAuthProvider>
+      {signedIn && <TodoForm />}
       {signedIn && (
         <PendingTasks
-          items={tasks}
-          completedItems={completedTasks}
           onMarkComplete={markCompleteHandler}
           onDeletePending={deletePendingHandler}
         />
       )}
       {signedIn && (
         <CompletedTasks
-          items={tasks}
-          completedItems={completedTasks}
           onMarkIncomplete={markIncompleteHandler}
           onDeleteCompleted={deleteCompletedHandler}
         />

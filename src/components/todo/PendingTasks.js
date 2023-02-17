@@ -1,7 +1,11 @@
 import { Fragment } from "react";
+import { useSelector } from "react-redux";
+import Task from "./Task";
 import classes from "./TasksList.module.css";
 
 const PendingTasks = (props) => {
+  const items = useSelector((state) => state.tasks.pendingTasks);
+  const completedItems = useSelector((state) => state.tasks.completedTasks);
   const markCompleteHandler = (task) => {
     props.onMarkComplete(task);
     props.onDeletePending(task);
@@ -15,7 +19,7 @@ const PendingTasks = (props) => {
     <p className={classes.empty}>Nothing to show yet! Please add new tasks.</p>
   );
 
-  if (props.items.length === 0 && props.completedItems.length > 0) {
+  if (items.length === 0 && completedItems.length > 0) {
     content = (
       <p className={classes.empty}>
         No pending tasks as of now. Please add new tasks.
@@ -23,31 +27,17 @@ const PendingTasks = (props) => {
     );
   }
 
-  if (props.items.length > 0) {
+  if (items.length > 0) {
     content = (
       <div>
         <div className={classes.items}>
           <h3>Pending Tasks</h3>
-          {props.items.map((task) => (
-            <div key={task.id} id={task.id} className={classes.task}>
-              {task.text}
-              <button
-                title="Mark Completed"
-                onClick={() =>
-                  markCompleteHandler({ id: task.id, text: task.text })
-                }
-                className={classes.mark_complete}
-              >
-                ✔
-              </button>
-              <button
-                className={classes.delete_pending}
-                title="Delete Task"
-                onClick={() => deleteHandler({ id: task.id, text: task.text })}
-              >
-                🗑
-              </button>
-            </div>
+          {items.map((task) => (
+            <Task
+              task={task}
+              markCompleteHandler={markCompleteHandler}
+              deleteHandler={deleteHandler}
+            />
           ))}
         </div>
       </div>

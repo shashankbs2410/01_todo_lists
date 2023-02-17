@@ -1,7 +1,10 @@
 import { Fragment } from "react";
+import { useSelector } from "react-redux";
 import classes from "./TasksList.module.css";
 
 const CompletedTasks = (props) => {
+  const items = useSelector((state) => state.tasks.pendingTasks);
+  const completedItems = useSelector((state) => state.tasks.completedTasks);
   const markIncompleteHandler = (task) => {
     props.onMarkIncomplete(task);
     props.onDeleteCompleted(task);
@@ -13,7 +16,7 @@ const CompletedTasks = (props) => {
 
   let content = null;
 
-  if (props.items.length > 0 && props.completedItems.length === 0) {
+  if (items.length > 0 && completedItems.length === 0) {
     content = (
       <p className={classes.empty}>
         No Task is finished yet! Mark the tasks to complete.
@@ -21,12 +24,12 @@ const CompletedTasks = (props) => {
     );
   }
 
-  if (props.completedItems.length > 0) {
+  if (completedItems.length > 0) {
     content = (
       <div className={classes.items}>
         <h3>Completed Tasks</h3>
-        {props.completedItems.map((task) => (
-          <div key={task.id} id={task.id} className={classes.completed_task}>
+        {completedItems.map((task) => (
+          <div key={task.id} className={classes.completed_task}>
             {task.text}
             <button
               title="Mark incomplete"

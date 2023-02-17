@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { taskActions } from "../../store/tasks-slice";
 import classes from "./TodoForm.module.css";
 
-const TodoForm = (props) => {
+const TodoForm = () => {
+  const dispatch = useDispatch();
   const [enteredInput, setEnteredInput] = useState("");
   const [inputisValid, setInputIsValid] = useState(true);
 
@@ -18,7 +21,12 @@ const TodoForm = (props) => {
       return;
     }
 
-    props.onAddTask(enteredInput);
+    dispatch(
+      taskActions.addPendingTask({
+        id: Math.random().toString(),
+        text: enteredInput,
+      })
+    );
 
     setInputIsValid(true);
     setEnteredInput("");
@@ -27,7 +35,7 @@ const TodoForm = (props) => {
   return (
     <div className={classes.background}>
       <form className={classes.form} onSubmit={formSubmitHandler}>
-        <label htmlFor="Task">New Task</label>
+        <label htmlFor="Task">Add New Task</label>
         <input
           id="Task"
           title="Type the task that you want to complete"
